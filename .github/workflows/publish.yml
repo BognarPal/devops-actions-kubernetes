@@ -29,4 +29,9 @@ jobs:
 
         sed -i 's|image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:.*|image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:'"$IMAGE_TAG"'|' deployment.yaml
 
-        kubectl apply -f ./deployment.yaml
+#TODO 
+# - config fájl létrehozása
+#     -> config kódolása base64-be
+#        kubectl apply -f ./deployment.yaml
+# - módosított deployment.yaml: commit/push        
+
