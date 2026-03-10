@@ -26,3 +26,7 @@ jobs:
         docker build . --file Dockerfile --tag ghcr.io/bognarpal/ghaction-k8s-13a-acsop:$IMAGE_TAG
         docker login ghcr.io -u bognarpal -p ${{ secrets.GHCR_TOKEN }}
         docker push ghcr.io/bognarpal/ghaction-k8s-13a-acsop:$IMAGE_TAG
+
+        sed -i 's|image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:.*|image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:'"$IMAGE_TAG"'|' deployment.yaml
+
+        cat deployment.yaml
