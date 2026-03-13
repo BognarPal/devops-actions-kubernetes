@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: github-action-teszt-container
-          image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:1773131448
+          image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:1773397606
           ports:
             - containerPort: 80
       imagePullSecrets:
