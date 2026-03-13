@@ -29,9 +29,18 @@ jobs:
 
         sed -i 's|image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:.*|image: ghcr.io/bognarpal/ghaction-k8s-13a-acsop:'"$IMAGE_TAG"'|' deployment.yaml
 
-#TODO 
-# - config fájl létrehozása
-#     -> config kódolása base64-be
-#        kubectl apply -f ./deployment.yaml
-# - módosított deployment.yaml: commit/push        
+        git config --global user.name "Bognár Pál"
+        git config --global user.email "bognar.pal@jedlik.eu"
 
+        git add deployment.yaml
+        git commit -m "update K8S image tag in deployment.yaml"
+        gut push
+
+        mkdir -p ~/.kube
+        echo "${{ secrets.JEDLIK_K8S_CONFIG }}" | base64 -d > ~/.kube/config
+        kubectl apply -f ./deployment.yaml
+
+
+#config fájlból base64 készítés:
+# $bytes = [System.IO.File]::ReadAllBytes("$env:USERPROFILE/.kube/config")
+# [System.Convert]::ToBase64String($bytes)
